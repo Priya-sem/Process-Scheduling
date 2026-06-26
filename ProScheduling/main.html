@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  
+  <body>
+    <div class="container">
+  <header>
+    <h1>CPU Scheduling Simulator ⁠✿</h1>
+    <div>
+      <p style="color:rgb(111, 111, 111); font-size:15px">(⁠づ⁠｡⁠◕⁠‿⁠‿⁠◕⁠｡⁠)⁠づ</p>
+      <p style="color:rgb(111, 111, 111); font-size:15px">⊂⁠(⁠´⁠⁠｡⁠◕‿⁠‿⁠< ⁠`⁠⁠｡⁠⊂⁠ ⁠)⁠∘⁠˚⁠˳⁠°</p>
+    </div>
+  </header>
+
+  <main class="grid grid-cols-2">
+    
+    <!-- left card -->
+    <section class="card">
+      <h2>Inputs</h2>
+
+      <div class="grid">
+        <div>
+          <label>Choose algorithm</label>
+          <select id="algorithm">
+            <option value="FCFS">FCFS</option>
+            <option value="SJF">SJF</option>
+            <option value="LJF">LJF</option>
+            <option value="HRRN">HIGHEST RATIO NEXT</option>
+            <option value="SRJF">SRJF</option>
+            <option value="LRJB">LRJF</option>
+            <option value="RR">ROUND ROBIN</option>
+            <option value="PRIORITY">PRIORITY</option>
+          </select>
+        </div>
+
+        <div id="quantum-wrap" style="display:none">
+          <label>Time quantum</label>
+          <input type="text" id="quantum" value="2">
+        </div>
+      </div>
+
+      <label style="margin-top:10px; display:block">Processes</label>
+
+      <div style="margin-top:8px; max-height:280px; overflow:auto; border:1px solid var(--border); border-radius:var(--radius); background:#fff;">
+        <table>
+          <thead>
+            <tr>
+              <th>PID</th>
+              <th>Arrival</th>
+              <th>Burst</th>
+              <th id="th-priority" style="display:none;">Priority</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="proc-body"></tbody>
+        </table>
+      </div>
+
+      <div class="controls" style="margin-top:19px">
+        <button class="btn" id="add-proc">Add Process</button>
+        <button class="btn" id="clear-proc">Clear</button>
+        <button class="btn primary" id="start">Start</button>
+      </div>
+
+      <div id="error" class="error"></div>
+    </section>
+
+    <!-- right card -->
+    <section class="card">
+      <h2>Outputs</h2>
+
+      <label>Gantt Chart</label>
+      <div class="gantt-wrapper">
+        <div id="gantt" class="gantt"></div>
+        <div id="times" class="times"></div>
+      </div>
+
+      <div class="kpis" id="kpis"></div>
+
+      <div style="margin-top:16px; max-height:300px; overflow:auto; border:1px solid var(--border); border-radius:var(--radius); background:#fff;">
+        <table>
+          <thead>
+            <tr>
+              <th>PID</th>
+              <th>Arrival</th>
+              <th>Burst</th>
+              <th id="res-th-priority" style="display:none;">Priority</th>
+              <th>Start</th>
+              <th>Completion</th>
+              <th>TAT</th>
+              <th>WT</th>
+              <th>RT</th>
+            </tr>
+          </thead>
+          <tbody id="res-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ROW TEMPLATE -->
+<template id="row-tpl">
+  <tr>
+    <td><input type="text" class="pid" placeholder="P1"></td>
+    <td><input type="text" class="at" placeholder="0"></td>
+    <td><input type="text" class="bt" placeholder="5"></td>
+    <td class="td-priority" style="display:none;"><input type="text" class="prio" placeholder="1"></td>
+    <td><button class="btn btn-del">Delete</button></td>
+  </tr>
+</template>
+
+    <script src="main.js">
+    </script>
+  </body>
+</html>
